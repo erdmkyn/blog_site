@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container">
+
+{{resimCanim}}
+    <h1>Kullanıcı Bilgileri</h1>
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img src="{% if request.user.profile.control == True %}{{request.user.profile.userImg }} {% endif %} {% if request.user.profile.control == False %}{{request.user.profile.userImg.url }}{% endif %}" class="avatar img-circle" alt="avatar" width="100px" height="100px">
+          <h6>Profil Resmi</h6>
+        </div>
+      </div>
+
+
+
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a>
+          <i class="fa fa-coffee"></i>
+            Kullanıcı <strong>Bilgileri</strong>. Bilgileri Sadece Görüntüleyebilirsiniz...
+        </div>
+        <h3>Kullanıcı Bilgileri</h3>
+ <br><br><br>
+        <form class="form-horizontal" role="form" action="{% url 'users:user_screen' request.user.username %}" enctype="multipart/form-data" method="post">
+         {% csrf_token %}
+
+       {% for field in form %}
+          <div class="form-group">
+            <label class="col-lg-3 control-label" >{{ field.label }}</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value='{{ field.value }}'  ng-model="resimCanim">
+            </div>
+          </div>
+       {% endfor %}
+        </form>
+      </div>
+  </div>
+</div>
+<hr>
+{% endblock %}

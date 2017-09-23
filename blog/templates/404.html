@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/404.css' %}">
+
+{% block body %}
+<script type="text/javascript   ">
+(function(){
+  var bsa = document.createElement('script');
+     bsa.type = 'text/javascript';
+     bsa.async = true;
+     bsa.src = '//s3.buysellads.com/ac/bsa.js';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+})();
+</script>
+<div class="wrapper row2">
+<div id="container" class="clear">
+
+
+
+
+<div id="fof" class="clear">
+
+<div class="hgroup">
+<h1><span><strong>4</strong></span><span><strong>0</strong></span><span><strong>4</strong></span></h1>
+<h2 >Hata ! <span>Sayfa Bulunamadı...</span></h2>
+</div>
+<p>Bazı Sebeplerden Dolayı İstediğiniz Sayfa Sunucumuzda Bulunamadı.</p>
+<p><a href="javascript:history.go(-1)">« Geri Dön</a> / <a href="{%  url 'home'%} ">Anasayfa »</a></p>
+
+</div>
+
+
+
+
+</div>
+</div>
+
+
+{% endblock %}

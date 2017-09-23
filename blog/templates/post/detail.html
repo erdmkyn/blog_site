@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+ <div class="container">
+{% block title %}Detay{% endblock %}
+{% block body %}
+
+
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="thumbnail">
+               <!--  {% if post.image %}
+                  <img src="    {{ post.image.url }} " class="img-responsive">
+                    {% endif %}
+                //-->
+              <div class="caption">
+                  <h3><t>{{ post.title }}<small> &nbsp;&nbsp; {{ post.publishing_date|timesince }} Önce</small></t></h3>
+                  <h4>Yazar : {{ post.user.get_full_name }}</h4>
+                  <p>{{ post.content|safe|linebreaks}}</p>
+                 <a href="" class="btn btn-primary" role="button">İleri</a>
+                  <a href="" class="btn btn-primary" role="button">Geri</a>
+
+            </div>
+               <hr>
+        </div>
+           {% for comment in post.comments.all %}
+                     <div class="col-sm-2">
+                        <div class="thumbnail">
+                        <img class="img-responsive user-photo" src= {% if comment.user.profile.userImg.url != None %}{{ comment.user.profile.userImg.url }}{% endif %}
+                                                                    {% if comment.user.profile.user_img_path != None %}{{ comment.user.profile.user_img_path }}{% endif %}>
+                        </div><!-- /thumbnail -->
+                        </div><!-- /col-sm-1 -->
+
+                        <div class="col-sm-10">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                        <strong>{{ comment.user.username }}</strong> <span class="text-muted">{{ comment.created_date|timesince }}</span>
+                        </div>
+                        <div class="panel-body">
+                         {{ comment.content|linebreaks }}
+                        </div><!-- /panel-body -->
+                        </div><!-- /panel panel-default -->
+                        </div><!-- /col-sm-5 -->
+            {% endfor %}
+
+
+                 {% include 'post/comment.html' %}
+ </div> </div>
+{% endblock %}
